@@ -28,6 +28,7 @@ async def generate_admin_quests(call, page, q_count=1, gen_new=True, is_call=Tru
             await call.answer(msg)
         else:
             await call.message.answer(msg)
+        return
     page = int(page)
     if quest_d is not None:
         for n, q in enumerate(quests):
@@ -84,6 +85,7 @@ async def generate_admin_news(call, page, q_count=1, gen_new=True, is_call=True,
             await call.answer(msg)
         else:
             await call.message.answer(msg)
+        return
     page = int(page)
     if news_d is not None:
         for n, q in enumerate(news):

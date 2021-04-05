@@ -34,6 +34,7 @@ async def generate_quest(call, page, q_count=3, is_call=True):
             await call.answer(msg)
         else:
             await call.message.answer(msg)
+        return
     last_quests = quests[(page - 1) * q_count:page * q_count]
     num_q = len(quests)
     num = (page - 1) * q_count
@@ -73,6 +74,7 @@ async def generate_news(call, page, n_count=5, is_call=True):
             await call.answer(msg)
         else:
             await call.message.answer(msg)
+        return
     last_news = news[(page - 1) * n_count:page * n_count]
     num_n = len(news)
     num = (page - 1) * n_count
