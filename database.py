@@ -4,7 +4,7 @@ from sqlalchemy import (Column, Integer, BigInteger, String,
                         Sequence, DateTime, Boolean)
 from sqlalchemy import sql
 from gino.schema import GinoSchemaVisitor
-from config import db_user, db_pass, host
+from config import db_user, db_pass, host, database
 
 db = Gino()
 
@@ -185,7 +185,7 @@ class DBCommands:
 
 
 async def create_db():
-    await db.set_bind(f'postgresql://{db_user}:{db_pass}@{host}/gino')
+    await db.set_bind(f'postgresql://{db_user}:{db_pass}@{host}/{database}')
     db.gino: GinoSchemaVisitor
     #await db.gino.drop_all()
     await db.gino.create_all()
