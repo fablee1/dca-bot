@@ -28,83 +28,85 @@ async def num_to_emoji(num):
 
 async def generate_quest(call, page, q_count=3, is_call=True):
     quests = await db.last_quests()
-    if not quests:
+    last_quests = quests[(page - 1) * q_count:page * q_count]
+    num_q = len(quests)
+    if not last_quests:
         msg = _('No quests to display.')
         if not is_call:
             await call.answer(msg)
         else:
             await call.message.answer(msg)
-    last_quests = quests[(page - 1) * q_count:page * q_count]
-    num_q = len(quests)
-    num = (page - 1) * q_count
-    q_str = _('Quest from')
-    lang = db.get_lang()
-    for x in last_quests:
-        num += 1
-        is_next_page = False
-        if num == page * q_count:
-            if num_q > page * q_count:
-                is_next_page = True
-        date_str = '*[{q_str} {d}\.{m}\.{y}]({url})*'.format(d=x.date.day,
-                                                             m=x.date.month,
-                                                             y=x.date.year,
-                                                             url=x.url,
-                                                             q_str=q_str)
-        solved_str = _('Quest not solved\! 🕐')
-        if x.solved:
-            solved_str = _('Quest is solved\! ✅')
-        msg_q = _('{num} {date_str}'
-                  '\nDifficulty: {diff}/100'
-                  '\n{sol}').format(num=await num_to_emoji(num), date_str=date_str, diff=x.diff, sol=solved_str)
-        if not is_call:
-            await call.answer(msg_q, parse_mode=ParseMode.MARKDOWN_V2, disable_web_page_preview=True,
-                              reply_markup=await keyboards.hint_kb(x.date, page, lang=lang, next_page=is_next_page))
-        else:
-            await call.message.answer(msg_q, parse_mode=ParseMode.MARKDOWN_V2, disable_web_page_preview=True,
-                                      reply_markup=await keyboards.hint_kb(x.date, page, lang=lang,
-                                                                           next_page=is_next_page))
+    else:
+        num = (page - 1) * q_count
+        q_str = _('Quest from')
+        lang = db.get_lang()
+        for x in last_quests:
+            num += 1
+            is_next_page = False
+            if num == page * q_count:
+                if num_q > page * q_count:
+                    is_next_page = True
+            date_str = '*[{q_str} {d}\.{m}\.{y}]({url})*'.format(d=x.date.day,
+                                                                 m=x.date.month,
+                                                                 y=x.date.year,
+                                                                 url=x.url,
+                                                                 q_str=q_str)
+            solved_str = _('Quest not solved\! 🕐')
+            if x.solved:
+                solved_str = _('Quest is solved\! ✅')
+            msg_q = _('{num} {date_str}'
+                      '\nDifficulty: {diff}/100'
+                      '\n{sol}').format(num=await num_to_emoji(num), date_str=date_str, diff=x.diff, sol=solved_str)
+            if not is_call:
+                await call.answer(msg_q, parse_mode=ParseMode.MARKDOWN_V2, disable_web_page_preview=True,
+                                  reply_markup=await keyboards.hint_kb(x.date, page, lang=lang, next_page=is_next_page))
+            else:
+                await call.message.answer(msg_q, parse_mode=ParseMode.MARKDOWN_V2, disable_web_page_preview=True,
+                                          reply_markup=await keyboards.hint_kb(x.date, page, lang=lang,
+                                                                               next_page=is_next_page))
 
 
 async def generate_news(call, page, n_count=5, is_call=True):
     news = await db.last_news()
-    if not news:
+    last_news = news[(page - 1) * n_count:page * n_count]
+    num_n = len(news)
+    if not last_news:
         msg = _('No news to display')
         if not is_call:
             await call.answer(msg)
         else:
             await call.message.answer(msg)
-    last_news = news[(page - 1) * n_count:page * n_count]
-    num_n = len(news)
-    num = (page - 1) * n_count
-    n_str = _('News')
-    msg = emojize(':newspaper: *{n_str}*\n'.format(n_str=n_str))
-    if page > 1:
-        msg = ''
-    for x in last_news:
-        num += 1
-        url = x.url
-        desc = x.desc
-        if await db.get_lang() == 'ru':
-            if x.url_ru is not None:
-                url = x.url_ru
-            if x.desc_ru is not None:
-                desc = x.desc_ru
-        date = '{d}\.{m}\.{y}'.format(d=x.date.day, m=x.date.month, y=x.date.year)
-        msg += '\n\n{num} {desc} \({date}\)' \
-               '\n{url}'.format(date=date, num=await num_to_emoji(num), desc=desc, url=url.replace('.', '\.'))
-    if num_n > page * n_count:
-        if not is_call:
-            await call.answer(msg, parse_mode=ParseMode.MARKDOWN_V2, reply_markup=await keyboards.more_news(page),
-                              disable_web_page_preview=True)
-        else:
-            await call.message.answer(msg, parse_mode=ParseMode.MARKDOWN_V2,
-                                      reply_markup=await keyboards.more_news(page),
-                                      disable_web_page_preview=True)
     else:
-        if not is_call:
-            await call.answer(msg, parse_mode=ParseMode.MARKDOWN_V2, disable_web_page_preview=True)
+        num = (page - 1) * n_count
+        n_str = _('News')
+        msg = emojize(':newspaper: *{n_str}*\n'.format(n_str=n_str))
+        if page > 1:
+            msg = ''
+        for x in last_news:
+            num += 1
+            url = x.url
+            desc = x.desc
+            if await db.get_lang() == 'ru':
+                if x.url_ru is not None:
+                    url = x.url_ru
+                if x.desc_ru is not None:
+                    desc = x.desc_ru
+            date = '{d}\.{m}\.{y}'.format(d=x.date.day, m=x.date.month, y=x.date.year)
+            msg += '\n\n{num} {desc} \({date}\)' \
+                   '\n{url}'.format(date=date, num=await num_to_emoji(num), desc=desc, url=url.replace('.', '\.'))
+        if num_n > page * n_count:
+            if not is_call:
+                await call.answer(msg, parse_mode=ParseMode.MARKDOWN_V2, reply_markup=await keyboards.more_news(page),
+                                  disable_web_page_preview=True)
+            else:
+                await call.message.answer(msg, parse_mode=ParseMode.MARKDOWN_V2,
+                                          reply_markup=await keyboards.more_news(page),
+                                          disable_web_page_preview=True)
         else:
-            await call.message.answer(msg, parse_mode=ParseMode.MARKDOWN_V2, disable_web_page_preview=True)
+            if not is_call:
+                await call.answer(msg, parse_mode=ParseMode.MARKDOWN_V2, disable_web_page_preview=True)
+            else:
+                await call.message.answer(msg, parse_mode=ParseMode.MARKDOWN_V2, disable_web_page_preview=True)
 
 
 @dp.message_handler(text=['🌐 Website', '🌐 Вебсайт'])
