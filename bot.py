@@ -13,6 +13,7 @@ from config import admin_id, WEBHOOK_PATH, WEBAPP_HOST, WEBAPP_PORT, WEBHOOK_URL
 async def on_startup(dp):
     logging.warning(
         'Starting connection. ')
+    await create_db()
     await bot.set_webhook(WEBHOOK_URL, drop_pending_updates=True)
 
 
@@ -32,4 +33,4 @@ if __name__ == "__main__":
     from admin_panel import dp
 
     # Запуск бота
-    executor.start_polling(dp, on_startup=on_startup, skip_updates=True)
+    executor.start_polling(dp, skip_updates=True)
