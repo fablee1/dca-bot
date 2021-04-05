@@ -1,0 +1,567 @@
+# Russian translations for PROJECT.
+# Copyright (C) 2021 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2021.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2021-04-05 14:40+0100\n"
+"PO-Revision-Date: 2021-04-04 17:02+0100\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: ru\n"
+"Language-Team: ru <LL@li.org>\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.9.0\n"
+
+#: admin_panel.py:33 handlers.py:34
+msgid "No quests to display."
+msgstr "Квестов ещё нет."
+
+#: admin_panel.py:48 handlers.py:41
+msgid "Quest from"
+msgstr "Квест от"
+
+#: admin_panel.py:54
+msgid "Quest not solved! 🕐"
+msgstr "Квест не решён! 🕐"
+
+#: admin_panel.py:56
+msgid "Quest is solved! ✅"
+msgstr "Квест решён! ✅"
+
+#: admin_panel.py:57
+msgid "Difficulty"
+msgstr "Сложность"
+
+#: admin_panel.py:90
+msgid "No news to display."
+msgstr "Новостей ещё нет."
+
+#: admin_panel.py:105
+msgid "News from"
+msgstr "Новость от"
+
+#: admin_panel.py:110
+msgid "Title/desc english"
+msgstr "Название/описание на английском"
+
+#: admin_panel.py:111
+msgid "Title/desc russian"
+msgstr "Название/описание на русском"
+
+#: admin_panel.py:112
+msgid "English url"
+msgstr "Английская ссылкв"
+
+#: admin_panel.py:113
+msgid "Russian url"
+msgstr "Русская ссылка"
+
+#: admin_panel.py:154
+msgid ""
+"This is your admin panel.\n"
+"\n"
+"Using the buttons below, you can manage quests, news, apps "
+"and look for stats."
+msgstr ""
+"Это твоя админ панель.\n"
+"\n"
+"Используя кнопки ниже, ты можешь Ред. квесты, новости, "
+"приложения и посмотреть на статистику."
+
+#: admin_panel.py:171 admin_panel.py:244
+msgid ""
+"Enter quest date in format DD-MM-YYYY or type '-' to assign today's date,"
+" or press /cancel"
+msgstr ""
+"Введи дату квеста в формате ДД-ММ-ГГГГ или отправь '-' чтобы "
+"автоматически ввести сегодняшнюю дату, или нажми /cancel"
+
+#: admin_panel.py:184 admin_panel.py:269 admin_panel.py:662 admin_panel.py:818
+msgid "Incorrect date format. Try again."
+msgstr "Неверный формат даты. Попробуй ещё раз."
+
+#: admin_panel.py:188
+msgid ""
+"Quest date is: {date}\n"
+"Now enter quest url or press /cancel"
+msgstr ""
+"Дата квеста: {date}\n"
+"Теперь введи ссылку на квест или нажми /cancel"
+
+#: admin_panel.py:200
+msgid ""
+"Quest url is: [{url}]({url})\n"
+"Now enter quest difficulty from 0 to 100 or press /cancel"
+msgstr ""
+"Ссылка на квест: [{url}]({url})\n"
+"Теперь введи сложность квеста от 0 до 100 или нажми /cancel"
+
+#: admin_panel.py:214
+msgid ""
+"Quest difficulty is: {diff}\n"
+"\n"
+"Now check quest:\n"
+"Date: {date}\n"
+"Url: [{url}]({url})\n"
+"Difficulty: {diff}\n"
+"\n"
+"If everything is correct press confirm or press /cancel"
+msgstr ""
+"Сложность квеста: {diff}\n"
+"\n"
+"Теперь проверь созданный квест:\n"
+"Дата: {date}\n"
+"Ссылка: [{url}]({url})\n"
+"Сложность: {diff}\n"
+"\n"
+"Если всё правильно нажми подтвердить или нажми /cancel"
+
+#: admin_panel.py:225
+msgid "Error, this must be a number between 0 and 100. Try again."
+msgstr "Ошибка, это должно быть число от 0 до 100. Попробуй ещё раз."
+
+#: admin_panel.py:237 admin_panel.py:734
+msgid "Admin menu."
+msgstr "Админ панель."
+
+#: admin_panel.py:253 admin_panel.py:802
+msgid "Enter new date in format DD-MM-YYYY:"
+msgstr "Введи новую дату в формате ДД-ММ-ГГГГ:"
+
+#: admin_panel.py:288 admin_panel.py:624 admin_panel.py:836
+msgid "Enter new url:"
+msgstr "Введи новую ссылку:"
+
+#: admin_panel.py:314
+msgid "Enter new difficulty from 0 to 100:"
+msgstr "Введи новую сложность от 0 до 100:"
+
+#: admin_panel.py:336
+msgid "Should be number between 0 and 100"
+msgstr "Должно быть число между 0 и 100"
+
+#: admin_panel.py:345 admin_panel.py:354
+msgid "Choose hint:"
+msgstr "Выбери подсказку:"
+
+#: admin_panel.py:364
+msgid "Choose hint language:"
+msgstr "Выберите язык подсказки:"
+
+#: admin_panel.py:396
+msgid ""
+"Hint {n} was deleted!\n"
+"Choose another hint to edit or press finish button."
+msgstr ""
+"Подск. {n} удалена!\n"
+"Выбери ещё одну подсказку чтобы отРед. или нажми закончить."
+
+#: admin_panel.py:438
+msgid "Please enter hint:"
+msgstr "Введи подсказку:"
+
+#: admin_panel.py:440
+msgid ""
+"This hint is:\n"
+"{hint}"
+msgstr ""
+"Эта подск.:\n"
+"{hint}"
+
+#: admin_panel.py:461
+msgid ""
+"Length of hint is {l} chars.\n"
+"Length should be less than or equal to 200 chars.\n"
+"Try again."
+msgstr ""
+"Длина подсказки {l} знаков.\n"
+"Длина должна быть меньше либа равна 200 знакам.\n"
+"Попробуй ещё раз."
+
+#: admin_panel.py:492
+msgid ""
+"Hint {n} {lang} was created!\n"
+"Choose another hint to edit or press finish button."
+msgstr ""
+"Подск. {n} {lang} была создана!\n"
+"Выбери ещё одну пожсказку чтобы отРед. или нажми закончить."
+
+#: admin_panel.py:557 admin_panel.py:763 admin_panel.py:891
+msgid "Admin panel."
+msgstr "Админ панель."
+
+#: admin_panel.py:575 admin_panel.py:595 admin_panel.py:616 admin_panel.py:634
+msgid "Choose platform to edit:"
+msgstr "Выбери платформу для редактирования:"
+
+#: admin_panel.py:583
+msgid "Enter app url for {p} platform:"
+msgstr "Введи ссылку на приложение для {p} платформы:"
+
+#: admin_panel.py:604
+msgid ""
+"Platform {p} url is:\n"
+"{url}"
+msgstr ""
+"Платформы {p} ссылка:\n"
+"{url}"
+
+#: admin_panel.py:649 admin_panel.py:741
+msgid ""
+"Enter news date in format DD-MM-YYYY or type '-' to assign today's date, "
+"or press /cancel"
+msgstr ""
+"Введи дату новости в формате ДД-ММ-ГГГГ или введи '-' чтобы автоматически"
+" ввести сегодняшнюю дату, или нажми /cancel"
+
+#: admin_panel.py:666
+msgid ""
+"News date is: {date}\n"
+"Now enter news english Title/Description or press /cancel"
+msgstr ""
+"Дата новости: {date}\n"
+"Теперь введи Название/Описание новости на английском или нажми /cancel"
+
+#: admin_panel.py:678
+msgid ""
+"News english desc: {desc}\n"
+"Now enter news russian Title/Description or press /cancel"
+msgstr ""
+"Описание английской новости: {desc}\n"
+"Теперь введи Название/Описание новости на русском или нажми /cancel"
+
+#: admin_panel.py:690
+msgid ""
+"News russian desc: {desc}\n"
+"Now enter news english url or press /cancel"
+msgstr ""
+"Описание новости на русском: {desc}\n"
+"Теперь введи ссылку на английскую новость или нажми /cancel"
+
+#: admin_panel.py:702
+msgid ""
+"News english url: {url}\n"
+"Now enter news russian url or press /cancel"
+msgstr ""
+"Ссылка английской новости: {url}\n"
+"Теперь введи ссылку на русскую новость или нажми /cancel"
+
+#: admin_panel.py:714
+msgid ""
+"News russian url is: {url_ru}\n"
+"\n"
+"Now check news:\n"
+"Date: {date}\n"
+"Url eng: [{url}]({url})\n"
+"Url rus: [{url_ru}]({url_ru})\n"
+"Description eng: {desc}\n"
+"Description rus: {desc_ru}\n"
+"\n"
+"If everything is correct press confirm or press /cancel"
+msgstr ""
+"Ссылка на русскую новость: {url_ru}\n"
+"\n"
+"Теперь проверь новость:\n"
+"Дата: {date}\n"
+"Английская ссылка: [{url}]({url})\n"
+"Русская ссылка: [{url_ru}]({url_ru})\n"
+"Английское описание: {desc}\n"
+"Русское описание: {desc_ru}\n"
+"\n"
+"Если всё правильно нажми подтвердить или нажми /cancel"
+
+#: admin_panel.py:772
+msgid "Enter new Title/Description:"
+msgstr "Введи новое Название/Описание:"
+
+#: admin_panel.py:879
+msgid ""
+"📊 Stats 📊\n"
+"\n"
+"🔍 Quests: {q_n}\n"
+"📰 News: {n_n}\n"
+"🐸 Users: {u_n}\n"
+"💼 Admins: {a_l}"
+msgstr ""
+"📊 Статистика 📊\n"
+"\n"
+"🔍 Квесты: {q_n}\n"
+"📰 Новости: {n_n}\n"
+"🐸 Пользователи: {u_n}\n"
+"💼 Админы: {a_l}"
+
+#: handlers.py:53
+msgid "Quest not solved\\! 🕐"
+msgstr "Квест не решён\\! 🕐"
+
+#: handlers.py:55
+msgid "Quest is solved\\! ✅"
+msgstr "Квест решён\\! ✅"
+
+#: handlers.py:56
+msgid ""
+"{num} {date_str}\n"
+"Difficulty: {diff}/100\n"
+"{sol}"
+msgstr ""
+"{num} {date_str}\n"
+"Сложность: {diff}/100\n"
+"{sol}"
+
+#: handlers.py:72
+msgid "No news to display"
+msgstr "Новостей ещё нет"
+
+#: handlers.py:79 keyboards.py:122
+msgid "News"
+msgstr "Новости"
+
+#: handlers.py:112
+msgid ""
+"Stay tuned!\n"
+"Coming soon..."
+msgstr ""
+"Будь в курсе!\n"
+"Скоро..."
+
+#: handlers.py:125
+msgid ""
+"Here you can find our apps!\n"
+"\n"
+"Download them to make the most from our quests."
+msgstr ""
+"Здесь ты можешь найти ссылки на наши приложения!\n"
+"\n"
+"Скачай их чтобы выжать максимум из наших квестов."
+
+#: handlers.py:132
+msgid "Choose your language:"
+msgstr "Выберите ваш язык:"
+
+#: handlers.py:145
+msgid "🇬🇧 Your language is now english! 🇬🇧"
+msgstr "🇷🇺 Ваш язык теперь русский! 🇷🇺"
+
+#: handlers.py:170
+msgid ""
+":wave: Welcome to the DCA quest bot.\n"
+"\n"
+":rocket: DCA - Digital Crypto Art is a project dedicated to make "
+"interesting quests by testing your skills and knowledge. In our quests "
+"you can win big and small depending on the difficulty of the quests. The "
+"prize can be in any cryptocurrency.\n"
+"\n"
+":information_source: Here you can find our latest news, as well as our "
+"latest quests.\n"
+"\n"
+msgstr ""
+":wave: Добро пожаловать в квест бот DCA.\n"
+"\n"
+":rocket: DCA - Digital Crypto Art это проект посвящённый созданию "
+"интересных квестов, которые проверят твои знания и смекалку. В наших "
+"квестах ты можешь выиграть как большие так и маленькие призы, в "
+"зависимости от сложности квеста. Приз может быть в любой криптовалюте.\n"
+"\n"
+":information_source: Здесь ты можешь найти наши последние новости и "
+"квесты.\n"
+"\n"
+
+#: handlers.py:189
+msgid ""
+"App for this platform is coming soon.\n"
+"Please stay updated!"
+msgstr ""
+"Приложение для этой платформы скоро появится.\n"
+"Жди обновлений!"
+
+#: handlers.py:195
+msgid "Send me your qr code."
+msgstr "Пришли мне свой QR код."
+
+#: handlers.py:202
+msgid "No qr found, try again!"
+msgstr "QR код не найден, попробуй ещё раз!"
+
+#: keyboards.py:29 keyboards.py:31 keyboards.py:33 keyboards.py:35
+#: keyboards.py:179
+msgid "Hint"
+msgstr "Подск."
+
+#: keyboards.py:49
+msgid "Cancel"
+msgstr "Отменить"
+
+#: keyboards.py:56 keyboards.py:142
+msgid "Confirm"
+msgstr "Подтвердить"
+
+#: keyboards.py:65
+msgid "🔍 Quests"
+msgstr "🔍 Квесты"
+
+#: keyboards.py:66
+msgid "🗞 News"
+msgstr "🗞 Новости"
+
+#: keyboards.py:69
+msgid "📱 Apps"
+msgstr "📱 Приложения"
+
+#: keyboards.py:70
+msgid "💽 Scan QR"
+msgstr "💽 Отсканировать QR"
+
+#: keyboards.py:73
+msgid "🌐 Website"
+msgstr "🌐 Вебсайт"
+
+#: keyboards.py:74
+msgid "⚙️ Language"
+msgstr "⚙️ Язык"
+
+#: keyboards.py:83
+msgid "⬇️ More news ⬇️"
+msgstr "⬇️ Больше новостей ⬇️"
+
+#: keyboards.py:101
+msgid "Add quest"
+msgstr "Добавить квест"
+
+#: keyboards.py:102
+msgid "Edit quests and hints"
+msgstr "ОтРед. квесты и подсказки"
+
+#: keyboards.py:103 keyboards.py:112 keyboards.py:152 keyboards.py:314
+#: keyboards.py:322 keyboards.py:329
+msgid "Back"
+msgstr "Назад"
+
+#: keyboards.py:110
+msgid "Add news"
+msgstr "Добавить новости"
+
+#: keyboards.py:111
+msgid "Edit news"
+msgstr "Ред. новости"
+
+#: keyboards.py:121
+msgid "Quests"
+msgstr "Квесты"
+
+#: keyboards.py:125
+msgid "App"
+msgstr "Приложение"
+
+#: keyboards.py:126
+msgid "Stats"
+msgstr "Статистика"
+
+#: keyboards.py:128
+msgid "Exit admin panel"
+msgstr "Выйти из админ панели."
+
+#: keyboards.py:143
+msgid "Start again"
+msgstr "Начать заново"
+
+#: keyboards.py:150 keyboards.py:320
+msgid "Edit"
+msgstr "Ред."
+
+#: keyboards.py:151 keyboards.py:240 keyboards.py:282 keyboards.py:321
+msgid "Delete"
+msgstr "Удалить"
+
+#: keyboards.py:163 keyboards.py:165 keyboards.py:167 keyboards.py:169
+msgid "Hint 💡"
+msgstr "Подск. 💡"
+
+#: keyboards.py:171
+msgid "⬇️ More quests ⬇️"
+msgstr "⬇️ Больше квестов ⬇️"
+
+#: keyboards.py:217
+msgid "Finish"
+msgstr "Закончить"
+
+#: keyboards.py:232 keyboards.py:269
+msgid "Edit date"
+msgstr "Ред. дату"
+
+#: keyboards.py:234
+msgid "Edit url"
+msgstr "Ред. ссылку"
+
+#: keyboards.py:236
+msgid "Edit diff"
+msgstr "Ред. сложность"
+
+#: keyboards.py:238
+msgid "Edit hints"
+msgstr "Ред. подсказки"
+
+#: keyboards.py:242
+msgid "Unsolved ❌"
+msgstr "Квест не решён! 🕐"
+
+#: keyboards.py:244
+msgid "Solved ✅"
+msgstr "Квест решён! ✅"
+
+#: keyboards.py:251 keyboards.py:288
+msgid "Prev page"
+msgstr "Пред. страница"
+
+#: keyboards.py:256 keyboards.py:293
+msgid "Next page"
+msgstr "След. страница"
+
+#: keyboards.py:263 keyboards.py:300
+msgid "Exit"
+msgstr "Выйти"
+
+#: keyboards.py:271
+msgid "Edit english url"
+msgstr "Ред. Англ. ссылку"
+
+#: keyboards.py:273
+msgid "Edit english desc"
+msgstr "Ред. Англ. Назв./Описание"
+
+#: keyboards.py:276
+msgid "Edit russian url"
+msgstr "Ред. Рус. ссылку"
+
+#: keyboards.py:279
+msgid "Edit russian desc"
+msgstr "Ред. Рус. Назв./Описание"
+
+#~ msgid ""
+#~ "News url is: {url}\n"
+#~ "\n"
+#~ "Now check news:\n"
+#~ "Date: {date}\n"
+#~ "Url: [{url}]({url})\n"
+#~ "Description: {desc}\n"
+#~ "\n"
+#~ "If everything is correct press confirm or press /cancel"
+#~ msgstr ""
+#~ "Ссылка на новость: {url}\n"
+#~ "\n"
+#~ "Теперь проверь новость:\n"
+#~ "Дата: {date}\n"
+#~ "Ссылка: [{url}]({url})\n"
+#~ "Описание: {desc}\n"
+#~ "\n"
+#~ "Если всё правильно надми подтвердить или нажми /cancel"
+
+#~ msgid "Translations"
+#~ msgstr "Переводы"
+
