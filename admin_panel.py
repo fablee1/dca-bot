@@ -22,6 +22,12 @@ class IsAdmin(Filter):
 
 async def generate_admin_quests(call, page, q_count=1, gen_new=True, is_call=True, quest_d=None):
     quests = await db.last_quests()
+    if not quests:
+        msg = _('No quests to display.')
+        if not is_call:
+            await call.answer(msg)
+        else:
+            await call.message.answer(msg)
     page = int(page)
     if quest_d is not None:
         for n, q in enumerate(quests):
@@ -29,56 +35,55 @@ async def generate_admin_quests(call, page, q_count=1, gen_new=True, is_call=Tru
                 page = int(n + 1)
     last_quests = quests[(page - 1) * q_count:page * q_count]
     num_q = len(quests)
-    if not last_quests:
-        msg = _('No quests to display.')
-        if not is_call:
-            await call.answer(msg)
-        else:
-            await call.message.answer(msg)
-    else:
-        num = (page - 1) * q_count
-        for x in last_quests:
-            num += 1
-            is_next_page = False
-            is_prev_page = False
-            if num_q > page * q_count:
-                is_next_page = True
-            if page * q_count > 1:
-                is_prev_page = True
-            q_from_str = _('Quest from')
-            date_str = '[{q_str} {d}.{m}.{y}]({url})'.format(d=x.date.day,
-                                                             m=x.date.month,
-                                                             y=x.date.year,
-                                                             url=x.url,
-                                                             q_str=q_from_str)
-            solved_str = _('Quest not solved! 🕐')
-            if x.solved:
-                solved_str = _('Quest is solved! ✅')
-            dif_str = _('Difficulty')
-            msg_q = '{num} {date_str}' \
-                    '\n{dif_s}: {diff}/100' \
-                    '\n{sol}'.format(dif_s=dif_str, num=num, date_str=date_str, diff=x.diff, sol=solved_str)
-            if gen_new:
-                if not is_call:
-                    await call.answer(msg_q, parse_mode=ParseMode.MARKDOWN, disable_web_page_preview=True,
-                                      reply_markup=await keyboards.edit_quest_kb(x, page, is_next_page, is_prev_page))
-                else:
-                    await call.message.answer(msg_q, parse_mode=ParseMode.MARKDOWN, disable_web_page_preview=True,
-                                              reply_markup=await keyboards.edit_quest_kb(x, page, is_next_page,
-                                                                                         is_prev_page))
+    num = (page - 1) * q_count
+    for x in last_quests:
+        num += 1
+        is_next_page = False
+        is_prev_page = False
+        if num_q > page * q_count:
+            is_next_page = True
+        if page * q_count > 1:
+            is_prev_page = True
+        q_from_str = _('Quest from')
+        date_str = '[{q_str} {d}.{m}.{y}]({url})'.format(d=x.date.day,
+                                                         m=x.date.month,
+                                                         y=x.date.year,
+                                                         url=x.url,
+                                                         q_str=q_from_str)
+        solved_str = _('Quest not solved! 🕐')
+        if x.solved:
+            solved_str = _('Quest is solved! ✅')
+        dif_str = _('Difficulty')
+        msg_q = '{num} {date_str}' \
+                '\n{dif_s}: {diff}/100' \
+                '\n{sol}'.format(dif_s=dif_str, num=num, date_str=date_str, diff=x.diff, sol=solved_str)
+        if gen_new:
+            if not is_call:
+                await call.answer(msg_q, parse_mode=ParseMode.MARKDOWN, disable_web_page_preview=True,
+                                  reply_markup=await keyboards.edit_quest_kb(x, page, is_next_page, is_prev_page))
             else:
-                if not is_call:
-                    await call.edit_text(msg_q, parse_mode=ParseMode.MARKDOWN, disable_web_page_preview=True)
-                    await call.edit_reply_markup(
-                        reply_markup=await keyboards.edit_quest_kb(x, page, is_next_page, is_prev_page))
-                else:
-                    await call.message.edit_text(msg_q, parse_mode=ParseMode.MARKDOWN, disable_web_page_preview=True)
-                    await call.message.edit_reply_markup(
-                        reply_markup=await keyboards.edit_quest_kb(x, page, is_next_page, is_prev_page))
+                await call.message.answer(msg_q, parse_mode=ParseMode.MARKDOWN, disable_web_page_preview=True,
+                                          reply_markup=await keyboards.edit_quest_kb(x, page, is_next_page,
+                                                                                     is_prev_page))
+        else:
+            if not is_call:
+                await call.edit_text(msg_q, parse_mode=ParseMode.MARKDOWN, disable_web_page_preview=True)
+                await call.edit_reply_markup(
+                    reply_markup=await keyboards.edit_quest_kb(x, page, is_next_page, is_prev_page))
+            else:
+                await call.message.edit_text(msg_q, parse_mode=ParseMode.MARKDOWN, disable_web_page_preview=True)
+                await call.message.edit_reply_markup(
+                    reply_markup=await keyboards.edit_quest_kb(x, page, is_next_page, is_prev_page))
 
 
 async def generate_admin_news(call, page, q_count=1, gen_new=True, is_call=True, news_d=None):
     news = await db.last_news()
+    if not news:
+        msg = _('No news to display.')
+        if not is_call:
+            await call.answer(msg)
+        else:
+            await call.message.answer(msg)
     page = int(page)
     if news_d is not None:
         for n, q in enumerate(news):
@@ -86,55 +91,48 @@ async def generate_admin_news(call, page, q_count=1, gen_new=True, is_call=True,
                 page = int(n + 1)
     last_quests = news[(page - 1) * q_count:page * q_count]
     num_q = len(news)
-    if not last_quests:
-        msg = _('No news to display.')
-        if not is_call:
-            await call.answer(msg)
-        else:
-            await call.message.answer(msg)
-    else:
-        num = (page - 1) * q_count
-        for x in last_quests:
-            num += 1
-            is_next_page = False
-            is_prev_page = False
-            if num_q > page * q_count:
-                is_next_page = True
-            if page * q_count > 1:
-                is_prev_page = True
-            news_from_str = _('News from')
-            date_str = '{n_str} {d}.{m}.{y}'.format(d=x.date.day,
-                                                    m=x.date.month,
-                                                    y=x.date.year,
-                                                    n_str=news_from_str)
-            t_d_str_en = _('Title/desc english')
-            t_d_str_ru = _('Title/desc russian')
-            url_str_en = _('English url')
-            url_str_ru = _('Russian url')
-            msg_q = '{num}. <b>{date_str}</b>' \
-                    '\n<b>{t_d_str_en}</b>: {desc_en}' \
-                    '\n<b>{t_d_str_ru}</b>: {desc_ru}' \
-                    '\n<b>{url_str_en}</b>: {url_en}' \
-                    '\n<b>{url_str_ru}</b>: {url_ru}'.format(t_d_str_en=t_d_str_en, t_d_str_ru=t_d_str_ru, desc_ru=x.desc_ru,
-                                                      num=num, date_str=date_str, desc_en=x.desc, url_str_en=url_str_en,
-                                                      url_str_ru=url_str_ru, url_en=x.url, url_ru=x.url_ru)
-            if gen_new:
-                if not is_call:
-                    await call.answer(msg_q, parse_mode=ParseMode.HTML, disable_web_page_preview=True,
-                                      reply_markup=await keyboards.edit_news_kb(x, page, is_next_page, is_prev_page))
-                else:
-                    await call.message.answer(msg_q, parse_mode=ParseMode.HTML, disable_web_page_preview=True,
-                                              reply_markup=await keyboards.edit_news_kb(x, page, is_next_page,
-                                                                                        is_prev_page))
+    num = (page - 1) * q_count
+    for x in last_quests:
+        num += 1
+        is_next_page = False
+        is_prev_page = False
+        if num_q > page * q_count:
+            is_next_page = True
+        if page * q_count > 1:
+            is_prev_page = True
+        news_from_str = _('News from')
+        date_str = '{n_str} {d}.{m}.{y}'.format(d=x.date.day,
+                                                m=x.date.month,
+                                                y=x.date.year,
+                                                n_str=news_from_str)
+        t_d_str_en = _('Title/desc english')
+        t_d_str_ru = _('Title/desc russian')
+        url_str_en = _('English url')
+        url_str_ru = _('Russian url')
+        msg_q = '{num}. <b>{date_str}</b>' \
+                '\n<b>{t_d_str_en}</b>: {desc_en}' \
+                '\n<b>{t_d_str_ru}</b>: {desc_ru}' \
+                '\n<b>{url_str_en}</b>: {url_en}' \
+                '\n<b>{url_str_ru}</b>: {url_ru}'.format(t_d_str_en=t_d_str_en, t_d_str_ru=t_d_str_ru, desc_ru=x.desc_ru,
+                                                  num=num, date_str=date_str, desc_en=x.desc, url_str_en=url_str_en,
+                                                  url_str_ru=url_str_ru, url_en=x.url, url_ru=x.url_ru)
+        if gen_new:
+            if not is_call:
+                await call.answer(msg_q, parse_mode=ParseMode.HTML, disable_web_page_preview=True,
+                                  reply_markup=await keyboards.edit_news_kb(x, page, is_next_page, is_prev_page))
             else:
-                if not is_call:
-                    await call.edit_text(msg_q, parse_mode=ParseMode.HTML, disable_web_page_preview=True)
-                    await call.edit_reply_markup(
-                        reply_markup=await keyboards.edit_news_kb(x, page, is_next_page, is_prev_page))
-                else:
-                    await call.message.edit_text(msg_q, parse_mode=ParseMode.HTML, disable_web_page_preview=True)
-                    await call.message.edit_reply_markup(
-                        reply_markup=await keyboards.edit_news_kb(x, page, is_next_page, is_prev_page))
+                await call.message.answer(msg_q, parse_mode=ParseMode.HTML, disable_web_page_preview=True,
+                                          reply_markup=await keyboards.edit_news_kb(x, page, is_next_page,
+                                                                                    is_prev_page))
+        else:
+            if not is_call:
+                await call.edit_text(msg_q, parse_mode=ParseMode.HTML, disable_web_page_preview=True)
+                await call.edit_reply_markup(
+                    reply_markup=await keyboards.edit_news_kb(x, page, is_next_page, is_prev_page))
+            else:
+                await call.message.edit_text(msg_q, parse_mode=ParseMode.HTML, disable_web_page_preview=True)
+                await call.message.edit_reply_markup(
+                    reply_markup=await keyboards.edit_news_kb(x, page, is_next_page, is_prev_page))
 
 
 @dp.callback_query_handler(IsAdmin(), text='admin_quests')
