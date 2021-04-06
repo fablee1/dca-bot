@@ -1,12 +1,9 @@
-import asyncio
-
 from aiogram.types import ParseMode
 from aiogram.utils.emoji import emojize
 
 import keyboards
-from aiogram.dispatcher.filters import Text, Filter
 from aiogram import types
-from load_all import dp, _, bot
+from load_all import dp, _
 from database import DBCommands
 from qr import read_qr
 

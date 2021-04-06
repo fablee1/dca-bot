@@ -1,9 +1,6 @@
-import asyncio
-
-from aiogram.types import ReplyKeyboardRemove, \
-    ReplyKeyboardMarkup, KeyboardButton, \
+from aiogram.types import ReplyKeyboardMarkup, \
+    KeyboardButton, \
     InlineKeyboardMarkup, InlineKeyboardButton
-from aiogram.utils.emoji import emojize
 from database import DBCommands
 from aiogram.utils.callback_data import CallbackData
 from load_all import _
