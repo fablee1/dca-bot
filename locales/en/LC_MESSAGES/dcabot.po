@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-04-05 14:40+0100\n"
+"POT-Creation-Date: 2021-04-06 17:41+0100\n"
 "PO-Revision-Date: 2021-04-04 17:02+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: en\n"
@@ -18,11 +18,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.9.0\n"
 
-#: admin_panel.py:33 handlers.py:34
+#: admin_panel.py:26 handlers.py:31
 msgid "No quests to display."
 msgstr ""
 
-#: admin_panel.py:48 handlers.py:41
+#: admin_panel.py:48 handlers.py:40
 msgid "Quest from"
 msgstr ""
 
@@ -38,7 +38,7 @@ msgstr ""
 msgid "Difficulty"
 msgstr ""
 
-#: admin_panel.py:90
+#: admin_panel.py:83
 msgid "No news to display."
 msgstr ""
 
@@ -62,37 +62,57 @@ msgstr ""
 msgid "Russian url"
 msgstr ""
 
-#: admin_panel.py:154
+#: admin_panel.py:166
 msgid ""
 "This is your admin panel.\n"
 "\n"
-"Using the buttons below, you can manage quests, news, app, translations "
-"and look for stats."
+"Using the buttons below, you can manage quests, news, apps and look for "
+"stats."
 msgstr ""
 
-#: admin_panel.py:171 admin_panel.py:244
+#: admin_panel.py:175
+msgid "Incorrect username format. Please use /set_admin @username"
+msgstr ""
+
+#: admin_panel.py:182
+msgid "This person is admin now!"
+msgstr ""
+
+#: admin_panel.py:184 admin_panel.py:199
+msgid "This user is not in the database, please ask him to start the bot first!"
+msgstr ""
+
+#: admin_panel.py:190
+msgid "Incorrect username format. Please use /del_admin @username"
+msgstr ""
+
+#: admin_panel.py:197
+msgid "This person is no more an admin!"
+msgstr ""
+
+#: admin_panel.py:207 admin_panel.py:280
 msgid ""
 "Enter quest date in format DD-MM-YYYY or type '-' to assign today's date,"
 " or press /cancel"
 msgstr ""
 
-#: admin_panel.py:184 admin_panel.py:269 admin_panel.py:662 admin_panel.py:818
+#: admin_panel.py:220 admin_panel.py:305 admin_panel.py:698 admin_panel.py:854
 msgid "Incorrect date format. Try again."
 msgstr ""
 
-#: admin_panel.py:188
+#: admin_panel.py:224
 msgid ""
 "Quest date is: {date}\n"
 "Now enter quest url or press /cancel"
 msgstr ""
 
-#: admin_panel.py:200
+#: admin_panel.py:236
 msgid ""
 "Quest url is: [{url}]({url})\n"
 "Now enter quest difficulty from 0 to 100 or press /cancel"
 msgstr ""
 
-#: admin_panel.py:214
+#: admin_panel.py:250
 msgid ""
 "Quest difficulty is: {diff}\n"
 "\n"
@@ -104,116 +124,116 @@ msgid ""
 "If everything is correct press confirm or press /cancel"
 msgstr ""
 
-#: admin_panel.py:225
+#: admin_panel.py:261
 msgid "Error, this must be a number between 0 and 100. Try again."
 msgstr ""
 
-#: admin_panel.py:237 admin_panel.py:734
+#: admin_panel.py:273 admin_panel.py:770
 msgid "Admin menu."
 msgstr ""
 
-#: admin_panel.py:253 admin_panel.py:802
+#: admin_panel.py:289 admin_panel.py:838
 msgid "Enter new date in format DD-MM-YYYY:"
 msgstr ""
 
-#: admin_panel.py:288 admin_panel.py:624 admin_panel.py:836
+#: admin_panel.py:324 admin_panel.py:660 admin_panel.py:872
 msgid "Enter new url:"
 msgstr ""
 
-#: admin_panel.py:314
+#: admin_panel.py:350
 msgid "Enter new difficulty from 0 to 100:"
 msgstr ""
 
-#: admin_panel.py:336
+#: admin_panel.py:372
 msgid "Should be number between 0 and 100"
 msgstr ""
 
-#: admin_panel.py:345 admin_panel.py:354
+#: admin_panel.py:381 admin_panel.py:390
 msgid "Choose hint:"
 msgstr ""
 
-#: admin_panel.py:364
+#: admin_panel.py:400
 msgid "Choose hint language:"
 msgstr ""
 
-#: admin_panel.py:396
+#: admin_panel.py:432
 msgid ""
 "Hint {n} was deleted!\n"
 "Choose another hint to edit or press finish button."
 msgstr ""
 
-#: admin_panel.py:438
+#: admin_panel.py:474
 msgid "Please enter hint:"
 msgstr ""
 
-#: admin_panel.py:440
+#: admin_panel.py:476
 msgid ""
 "This hint is:\n"
 "{hint}"
 msgstr ""
 
-#: admin_panel.py:461
+#: admin_panel.py:497
 msgid ""
 "Length of hint is {l} chars.\n"
 "Length should be less than or equal to 200 chars.\n"
 "Try again."
 msgstr ""
 
-#: admin_panel.py:492
+#: admin_panel.py:528
 msgid ""
 "Hint {n} {lang} was created!\n"
 "Choose another hint to edit or press finish button."
 msgstr ""
 
-#: admin_panel.py:557 admin_panel.py:763 admin_panel.py:891
+#: admin_panel.py:593 admin_panel.py:799 admin_panel.py:927
 msgid "Admin panel."
 msgstr ""
 
-#: admin_panel.py:575 admin_panel.py:595 admin_panel.py:616 admin_panel.py:634
+#: admin_panel.py:611 admin_panel.py:631 admin_panel.py:652 admin_panel.py:670
 msgid "Choose platform to edit:"
 msgstr ""
 
-#: admin_panel.py:583
+#: admin_panel.py:619
 msgid "Enter app url for {p} platform:"
 msgstr ""
 
-#: admin_panel.py:604
+#: admin_panel.py:640
 msgid ""
 "Platform {p} url is:\n"
 "{url}"
 msgstr ""
 
-#: admin_panel.py:649 admin_panel.py:741
+#: admin_panel.py:685 admin_panel.py:777
 msgid ""
 "Enter news date in format DD-MM-YYYY or type '-' to assign today's date, "
 "or press /cancel"
 msgstr ""
 
-#: admin_panel.py:666
+#: admin_panel.py:702
 msgid ""
 "News date is: {date}\n"
 "Now enter news english Title/Description or press /cancel"
 msgstr ""
 
-#: admin_panel.py:678
+#: admin_panel.py:714
 msgid ""
 "News english desc: {desc}\n"
 "Now enter news russian Title/Description or press /cancel"
 msgstr ""
 
-#: admin_panel.py:690
+#: admin_panel.py:726
 msgid ""
 "News russian desc: {desc}\n"
 "Now enter news english url or press /cancel"
 msgstr ""
 
-#: admin_panel.py:702
+#: admin_panel.py:738
 msgid ""
 "News english url: {url}\n"
 "Now enter news russian url or press /cancel"
 msgstr ""
 
-#: admin_panel.py:714
+#: admin_panel.py:750
 msgid ""
 "News russian url is: {url_ru}\n"
 "\n"
@@ -227,11 +247,11 @@ msgid ""
 "If everything is correct press confirm or press /cancel"
 msgstr ""
 
-#: admin_panel.py:772
+#: admin_panel.py:808
 msgid "Enter new Title/Description:"
 msgstr ""
 
-#: admin_panel.py:879
+#: admin_panel.py:915
 msgid ""
 "📊 Stats 📊\n"
 "\n"
@@ -256,36 +276,36 @@ msgid ""
 "{sol}"
 msgstr ""
 
-#: handlers.py:72
+#: handlers.py:71
 msgid "No news to display"
 msgstr ""
 
-#: handlers.py:79 keyboards.py:122
+#: handlers.py:80 keyboards.py:119
 msgid "News"
 msgstr ""
 
-#: handlers.py:112
+#: handlers.py:113
 msgid ""
 "Stay tuned!\n"
 "Coming soon..."
 msgstr ""
 
-#: handlers.py:125
+#: handlers.py:149
 msgid ""
 "Here you can find our apps!\n"
 "\n"
 "Download them to make the most from our quests."
 msgstr ""
 
-#: handlers.py:132
+#: handlers.py:156
 msgid "Choose your language:"
 msgstr ""
 
-#: handlers.py:145
+#: handlers.py:169
 msgid "🇬🇧 Your language is now english! 🇬🇧"
 msgstr ""
 
-#: handlers.py:170
+#: handlers.py:194
 msgid ""
 ":wave: Welcome to the DCA quest bot.\n"
 "\n"
@@ -299,171 +319,172 @@ msgid ""
 "\n"
 msgstr ""
 
-#: handlers.py:189
+#: handlers.py:213
 msgid ""
 "App for this platform is coming soon.\n"
 "Please stay updated!"
 msgstr ""
 
-#: handlers.py:195
+#: handlers.py:219
 msgid "Send me your qr code."
 msgstr ""
 
-#: handlers.py:202
+#: handlers.py:226
 msgid "No qr found, try again!"
 msgstr ""
 
-#: keyboards.py:29 keyboards.py:31 keyboards.py:33 keyboards.py:35
-#: keyboards.py:179
+#: keyboards.py:26 keyboards.py:28 keyboards.py:30 keyboards.py:32
+#: keyboards.py:187
 msgid "Hint"
 msgstr ""
 
-#: keyboards.py:49
+#: keyboards.py:46
 msgid "Cancel"
 msgstr ""
 
-#: keyboards.py:56 keyboards.py:142
+#: keyboards.py:53 keyboards.py:139
 msgid "Confirm"
 msgstr ""
 
-#: keyboards.py:65
+#: keyboards.py:62
 msgid "🔍 Quests"
 msgstr ""
 
-#: keyboards.py:66
+#: keyboards.py:63
 msgid "🗞 News"
 msgstr ""
 
-#: keyboards.py:69
+#: keyboards.py:66
 msgid "📱 Apps"
 msgstr ""
 
-#: keyboards.py:70
+#: keyboards.py:67
 msgid "💽 Scan QR"
 msgstr ""
 
-#: keyboards.py:73
+#: keyboards.py:70
 msgid "🌐 Website"
 msgstr ""
 
-#: keyboards.py:74
+#: keyboards.py:71
 msgid "⚙️ Language"
 msgstr ""
 
-#: keyboards.py:83
+#: keyboards.py:80
 msgid "⬇️ More news ⬇️"
 msgstr ""
 
-#: keyboards.py:101
+#: keyboards.py:98
 msgid "Add quest"
 msgstr ""
 
-#: keyboards.py:102
+#: keyboards.py:99
 msgid "Edit quests and hints"
 msgstr ""
 
-#: keyboards.py:103 keyboards.py:112 keyboards.py:152 keyboards.py:314
-#: keyboards.py:322 keyboards.py:329
+#: keyboards.py:100 keyboards.py:109 keyboards.py:149 keyboards.py:322
+#: keyboards.py:330 keyboards.py:337
 msgid "Back"
 msgstr ""
 
-#: keyboards.py:110
+#: keyboards.py:107
 msgid "Add news"
 msgstr ""
 
-#: keyboards.py:111
+#: keyboards.py:108
 msgid "Edit news"
 msgstr ""
 
-#: keyboards.py:121
+#: keyboards.py:118
 msgid "Quests"
 msgstr ""
 
-#: keyboards.py:125
+#: keyboards.py:122
 msgid "App"
 msgstr ""
 
-#: keyboards.py:126
+#: keyboards.py:123
 msgid "Stats"
 msgstr ""
 
-#: keyboards.py:128
+#: keyboards.py:125
 msgid "Exit admin panel"
 msgstr ""
 
-#: keyboards.py:143
+#: keyboards.py:140
 msgid "Start again"
 msgstr ""
 
-#: keyboards.py:150 keyboards.py:320
+#: keyboards.py:147 keyboards.py:328
 msgid "Edit"
 msgstr ""
 
-#: keyboards.py:151 keyboards.py:240 keyboards.py:282 keyboards.py:321
+#: keyboards.py:148 keyboards.py:248 keyboards.py:290 keyboards.py:329
 msgid "Delete"
 msgstr ""
 
-#: keyboards.py:163 keyboards.py:165 keyboards.py:167 keyboards.py:169
+#: keyboards.py:162 keyboards.py:164 keyboards.py:166 keyboards.py:168
+#: keyboards.py:171 keyboards.py:173 keyboards.py:175 keyboards.py:177
 msgid "Hint 💡"
 msgstr ""
 
-#: keyboards.py:171
+#: keyboards.py:179
 msgid "⬇️ More quests ⬇️"
 msgstr ""
 
-#: keyboards.py:217
+#: keyboards.py:225
 msgid "Finish"
 msgstr ""
 
-#: keyboards.py:232 keyboards.py:269
+#: keyboards.py:240 keyboards.py:277
 msgid "Edit date"
 msgstr ""
 
-#: keyboards.py:234
+#: keyboards.py:242
 msgid "Edit url"
 msgstr ""
 
-#: keyboards.py:236
+#: keyboards.py:244
 msgid "Edit diff"
 msgstr ""
 
-#: keyboards.py:238
+#: keyboards.py:246
 msgid "Edit hints"
 msgstr ""
 
-#: keyboards.py:242
+#: keyboards.py:250
 msgid "Unsolved ❌"
 msgstr ""
 
-#: keyboards.py:244
+#: keyboards.py:252
 msgid "Solved ✅"
 msgstr ""
 
-#: keyboards.py:251 keyboards.py:288
+#: keyboards.py:259 keyboards.py:296
 msgid "Prev page"
 msgstr ""
 
-#: keyboards.py:256 keyboards.py:293
+#: keyboards.py:264 keyboards.py:301
 msgid "Next page"
 msgstr ""
 
-#: keyboards.py:263 keyboards.py:300
+#: keyboards.py:271 keyboards.py:308
 msgid "Exit"
 msgstr ""
 
-#: keyboards.py:271
+#: keyboards.py:279
 msgid "Edit english url"
 msgstr ""
 
-#: keyboards.py:273
+#: keyboards.py:281
 msgid "Edit english desc"
 msgstr ""
 
-#: keyboards.py:276
+#: keyboards.py:284
 msgid "Edit russian url"
 msgstr ""
 
-#: keyboards.py:279
+#: keyboards.py:287
 msgid "Edit russian desc"
 msgstr ""
 
@@ -503,5 +524,13 @@ msgstr ""
 #~ msgstr ""
 
 #~ msgid "Edit desc"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "This is your admin panel.\n"
+#~ "\n"
+#~ "Using the buttons below, you can "
+#~ "manage quests, news, app, translations "
+#~ "and look for stats."
 #~ msgstr ""
 
