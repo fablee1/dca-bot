@@ -172,8 +172,8 @@ async def admin_panel(message: types.Message):
 
 @dp.message_handler(IsAdmin(), commands=['set_admin'])
 async def set_admin(message: types.Message):
-    message = message.text
-    await message.reply(message)
+    msg = message.text
+    await message.reply(msg)
 
 
 @dp.callback_query_handler(IsAdmin(), text='add_quest')
