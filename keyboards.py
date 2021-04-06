@@ -154,6 +154,7 @@ async def edit_hint(hint_n, q_date, page, lang):
 async def hint_kb(quest_date, page=1, lang='en', next_page=False):
     kb = InlineKeyboardMarkup(row_width=2)
     hints = await db.get_hints(quest_date)
+    quest_date = str(quest_date)
     if hints is None:
         return kb
     if lang == 'en':
