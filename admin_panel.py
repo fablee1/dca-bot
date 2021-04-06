@@ -172,9 +172,31 @@ async def admin_panel(message: types.Message):
 
 @dp.message_handler(IsAdmin(), commands=['set_admin'])
 async def set_admin(message: types.Message):
-    msg = 'Enter @username of the person who you want to make admin.'
+    msg = _('Incorrect username format. Please use /set_admin @username')
     args = message.get_args()
-    print(args)
+    if args != '' and len(args.split(' ')) == 1 and args[0] == '@':
+        username = args.strip('@')
+        user = await db.get_user_username(username)
+        if user is not None:
+            await user.update(is_admin=True).apply()
+            msg = _('This person is admin now!')
+        else:
+            msg = _('This user is not in the database, please ask him to start the bot first!')
+    await message.reply(msg)
+
+
+@dp.message_handler(IsAdmin(), commands=['del_admin'])
+async def del_admin(message: types.Message):
+    msg = _('Incorrect username format. Please use /del_admin @username')
+    args = message.get_args()
+    if args != '' and len(args.split(' ')) == 1 and args[0] == '@':
+        username = args.strip('@')
+        user = await db.get_user_username(username)
+        if user is not None:
+            await user.update(is_admin=False).apply()
+            msg = _('This person is no more an admin!')
+        else:
+            msg = _('This user is not in the database, please ask him to start the bot first!')
     await message.reply(msg)
 
 

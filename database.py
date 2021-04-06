@@ -101,6 +101,10 @@ class DBCommands:
         user = await User.query.where(User.user_id == user_id).gino.first()
         return user
 
+    async def get_user_username(self, username):
+        user = await User.query.where(User.username == username).gino.first()
+        return user
+
     async def get_news(self, date):
         news = await News.query.where(News.date == date).gino.first()
         return news
