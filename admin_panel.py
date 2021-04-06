@@ -172,7 +172,7 @@ async def admin_panel(message: types.Message):
 
 @dp.message_handler(IsAdmin(), commands=['set_admin'])
 async def set_admin(message: types.Message):
-    msg = message.text
+    msg = message.get_args()
     await message.reply(msg)
 
 
