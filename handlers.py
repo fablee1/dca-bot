@@ -118,10 +118,10 @@ async def cmd_site(message: types.Message):
 @dp.callback_query_handler(keyboards.quest_cb.filter(action='hint'))
 async def show_hint(call: types.CallbackQuery, callback_data: dict):
     data = callback_data['text']
-    quest_date = datetime.datetime.strptime(callback_data['date'], '%Y-%m-%d %H:%M:%S')
+    quest_date = datetime.datetime.strptime(data[1:], '%Y-%m-%d %H:%M:%S')
     hints = await db.get_hints(quest_date)
     hint_n = data[0]
-    lang = data[-2:]
+    lang = await db.get_lang()
     hint_text = 'error'
     if lang == 'en':
         if hint_n == '1':
