@@ -93,7 +93,7 @@ async def generate_news(call, page, n_count=5, is_call=True):
                 desc = x.desc_ru
         date = '{d}\.{m}\.{y}'.format(d=x.date.day, m=x.date.month, y=x.date.year)
         msg += '\n\n{num} {desc} \({date}\)' \
-               '\n{url}'.format(date=date, num=await num_to_emoji(num), desc=desc, url=url.replace('.', '\.'))
+               '\n{url}'.format(date=date, num=await num_to_emoji(num), desc=desc, url=url.replace('.', '\.').replace('-', '\-'))
     if num_n > page * n_count:
         if not is_call:
             await call.answer(msg, parse_mode=ParseMode.MARKDOWN_V2, reply_markup=await keyboards.more_news(page),
