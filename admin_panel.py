@@ -605,6 +605,13 @@ async def del_quest(call: types.CallbackQuery, callback_data: dict):
 
 
 # ---------------------------- App handlers -----------------------------
+@dp.callback_query_handler(IsAdmin(), text='admin_app')
+async def admin_app(call: types.CallbackQuery):
+    await call.answer()
+    await call.message.edit_text(_('Choose platform to edit:'))
+    await call.message.edit_reply_markup(reply_markup=await keyboards.admin_app_kb())
+
+
 @dp.callback_query_handler(IsAdmin(), text='admin_app', state=AddApp)
 async def admin_app(call: types.CallbackQuery):
     await call.answer()
