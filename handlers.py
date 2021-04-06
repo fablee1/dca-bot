@@ -1,3 +1,5 @@
+import datetime
+
 from aiogram.types import ParseMode
 from aiogram.utils.emoji import emojize
 
@@ -115,7 +117,30 @@ async def cmd_site(message: types.Message):
 
 @dp.callback_query_handler(keyboards.quest_cb.filter(action='hint'))
 async def show_hint(call: types.CallbackQuery, callback_data: dict):
-    hint_text = callback_data['text']
+    data = callback_data['text']
+    quest_date = datetime.datetime.strptime(callback_data['date'], '%Y-%m-%d %H:%M:%S')
+    hints = await db.get_hints(quest_date)
+    hint_n = data[0]
+    lang = data[-2:]
+    hint_text = 'error'
+    if lang == 'en':
+        if hint_n == '1':
+            hint_text = hints.hint1
+        elif hint_n == '2':
+            hint_text = hints.hint2
+        elif hint_n == '3':
+            hint_text = hints.hint3
+        elif hint_n == '4':
+            hint_text = hints.hint4
+    else:
+        if hint_n == '1':
+            hint_text = hints.hint1_ru
+        elif hint_n == '2':
+            hint_text = hints.hint2_ru
+        elif hint_n == '3':
+            hint_text = hints.hint3_ru
+        elif hint_n == '4':
+            hint_text = hints.hint4_ru
     await call.answer(text=hint_text, show_alert=True)
 
 

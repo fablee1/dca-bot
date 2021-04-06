@@ -5,7 +5,7 @@ from database import DBCommands
 from aiogram.utils.callback_data import CallbackData
 from load_all import _
 
-quest_cb = CallbackData('quest', 'action', 'text', sep=';')
+quest_cb = CallbackData('quest', 'action', 'text', 'date', sep=';')
 admin_hint_cb = CallbackData('admin_hint', 'hint_n', 'q_date', 'page', sep=';')
 del_hint_cb = CallbackData('del_hint', 'hint_n', 'q_date', 'page', 'lang', sep='+')
 edit_quest_cb = CallbackData('edit_quest', 'action', 'quest', 'data', sep=';')
@@ -158,25 +158,25 @@ async def hint_kb(quest_date, page=1, lang='en', next_page=False):
         return kb
     if lang == 'en':
         if hints.hint1 is not None:
-            kb.insert(InlineKeyboardButton(_('Hint 💡'), callback_data=quest_cb.new(action='hint', text=hints.hint1)))
+            kb.insert(InlineKeyboardButton(_('Hint 💡'), callback_data=quest_cb.new(action='hint', text='1'+lang, date=quest_date)))
         if hints.hint2 is not None:
-            kb.insert(InlineKeyboardButton(_('Hint 💡'), callback_data=quest_cb.new(action='hint', text=hints.hint2)))
+            kb.insert(InlineKeyboardButton(_('Hint 💡'), callback_data=quest_cb.new(action='hint', text='2'+lang, date=quest_date)))
         if hints.hint3 is not None:
-            kb.insert(InlineKeyboardButton(_('Hint 💡'), callback_data=quest_cb.new(action='hint', text=hints.hint3)))
+            kb.insert(InlineKeyboardButton(_('Hint 💡'), callback_data=quest_cb.new(action='hint', text='3'+lang, date=quest_date)))
         if hints.hint4 is not None:
-            kb.insert(InlineKeyboardButton(_('Hint 💡'), callback_data=quest_cb.new(action='hint', text=hints.hint4)))
+            kb.insert(InlineKeyboardButton(_('Hint 💡'), callback_data=quest_cb.new(action='hint', text='4'+lang, date=quest_date)))
     else:
         if hints.hint1_ru is not None:
-            kb.insert(InlineKeyboardButton(_('Hint 💡'), callback_data=quest_cb.new(action='hint', text=hints.hint1_ru)))
+            kb.insert(InlineKeyboardButton(_('Hint 💡'), callback_data=quest_cb.new(action='hint', text='1'+lang, date=quest_date)))
         if hints.hint2_ru is not None:
-            kb.insert(InlineKeyboardButton(_('Hint 💡'), callback_data=quest_cb.new(action='hint', text=hints.hint2_ru)))
+            kb.insert(InlineKeyboardButton(_('Hint 💡'), callback_data=quest_cb.new(action='hint', text='2'+lang, date=quest_date)))
         if hints.hint3_ru is not None:
-            kb.insert(InlineKeyboardButton(_('Hint 💡'), callback_data=quest_cb.new(action='hint', text=hints.hint3_ru)))
+            kb.insert(InlineKeyboardButton(_('Hint 💡'), callback_data=quest_cb.new(action='hint', text='3'+lang, date=quest_date)))
         if hints.hint4_ru is not None:
-            kb.insert(InlineKeyboardButton(_('Hint 💡'), callback_data=quest_cb.new(action='hint', text=hints.hint4_ru)))
+            kb.insert(InlineKeyboardButton(_('Hint 💡'), callback_data=quest_cb.new(action='hint', text='4'+lang, date=quest_date)))
     if next_page:
         kb.add(InlineKeyboardButton(_('⬇️ More quests ⬇️'),
-                                    callback_data=quest_cb.new(action='more_quests', text=page + 1)))
+                                    callback_data=quest_cb.new(action='more_quests', text=page + 1, date=quest_date)))
     return kb
 
 
