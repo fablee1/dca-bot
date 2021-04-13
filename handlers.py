@@ -113,7 +113,7 @@ async def generate_news(call, page, n_count=5, is_call=True):
 async def cmd_site(message: types.Message):
     msg = _('Stay tuned!'
             '\nComing soon...')
-    await message.answer(msg)
+    await message.answer(msg, reply_markup=await keyboards.main_kb())
 
 
 @dp.callback_query_handler(keyboards.quest_cb.filter(action='hint'))
@@ -148,19 +148,21 @@ async def show_hint(call: types.CallbackQuery, callback_data: dict):
 @dp.message_handler(text=['How to solve❓', 'Как решать❓'])
 async def cmd_how_to_solve(message: types.Message):
     msg = _('how_to_solve')
-    await message.answer(msg, parse_mode=ParseMode.HTML, disable_web_page_preview=True)
+    await message.answer(msg, reply_markup=await keyboards.main_kb(), parse_mode=ParseMode.HTML, disable_web_page_preview=True)
 
 
 @dp.message_handler(text=['📱 Apps', '📱 Приложения'])
 async def cmd_apps(message: types.Message):
     msg = _('Here you can find our apps!'
             '\n\nDownload them to make the most from our quests.')
+    await message.edit_reply_markup(reply_markup=await keyboards.main_kb())
     await message.answer(msg, reply_markup=await keyboards.app_kb())
 
 
 @dp.message_handler(text=['⚙️ Language', '⚙️ Язык'])
 async def lang(message: types.Message):
     msg = _('Choose your language:')
+    await message.edit_reply_markup(reply_markup=await keyboards.main_kb())
     await message.answer(msg, reply_markup=await keyboards.lang_kb())
 
 
@@ -224,7 +226,7 @@ async def app_not_exists(call: types.CallbackQuery):
 @dp.message_handler(text=['💽 Scan QR', '💽 Отсканировать QR'])
 async def scan_qr(message: types.Message):
     msg = _('Send me your qr code.')
-    await message.answer(msg)
+    await message.answer(msg, reply_markup=await keyboards.main_kb())
 
 
 @dp.message_handler(content_types=['photo', 'document'])
