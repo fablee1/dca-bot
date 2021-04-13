@@ -5,7 +5,7 @@ from aiogram.utils.emoji import emojize
 
 import keyboards
 from aiogram import types
-from load_all import dp, _
+from load_all import dp, _, bot
 from database import DBCommands
 from qr import read_qr
 
@@ -147,6 +147,7 @@ async def show_hint(call: types.CallbackQuery, callback_data: dict):
 @dp.message_handler(text=['How to solve❓', 'Как решать❓'])
 async def cmd_how_to_solve(message: types.Message):
     msg = _('how_to_solve')
+    await message.answer(_('How to solve❓'), reply_markup=await keyboards.main_kb())
     await message.answer(msg, parse_mode=ParseMode.HTML, disable_web_page_preview=True)
 
 
@@ -154,6 +155,7 @@ async def cmd_how_to_solve(message: types.Message):
 async def cmd_apps(message: types.Message):
     msg = _('Here you can find our apps!'
             '\n\nDownload them to make the most from our quests.')
+    await message.answer(_('📱 Apps'), reply_markup=await keyboards.main_kb())
     await message.answer(msg, reply_markup=await keyboards.app_kb())
 
 
@@ -187,11 +189,13 @@ async def lang_ru(call: types.CallbackQuery):
 
 @dp.message_handler(text=['🗞 News', '🗞 Новости'])
 async def cmd_news(message: types.Message):
+    await message.answer(_('🗞 News'), reply_markup=await keyboards.main_kb())
     await generate_news(message, 1, is_call=False)
 
 
 @dp.message_handler(text=['🔍 Quests', '🔍 Квесты'])
 async def cmd_quests(message: types.Message):
+    await message.answer(_('🔍 Quests'), reply_markup=await keyboards.main_kb())
     await generate_quest(message, 1, is_call=False)
 
 
@@ -223,7 +227,7 @@ async def app_not_exists(call: types.CallbackQuery):
 @dp.message_handler(text=['💽 Scan QR', '💽 Отсканировать QR'])
 async def scan_qr(message: types.Message):
     msg = _('Send me your qr code.')
-    await message.answer(msg)
+    await message.answer(msg, reply_markup=await keyboards.main_kb())
 
 
 @dp.message_handler(content_types=['photo', 'document'])

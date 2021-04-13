@@ -55,7 +55,7 @@ async def lang_conf_kb():
     return lang_conf_kb
 
 
-async def main_kb(one_time=False):
+async def main_kb():
     main_kb = ReplyKeyboardMarkup(
         keyboard=[
             [
@@ -63,7 +63,7 @@ async def main_kb(one_time=False):
                 KeyboardButton(_('🗞 News'))
             ],
             [
-                KeyboardButton(_('How to solve❓'))
+               KeyboardButton(_('How to solve❓'))
             ],
             [
                 KeyboardButton(_('📱 Apps')),
@@ -73,7 +73,7 @@ async def main_kb(one_time=False):
                 KeyboardButton(_('🌐 Website')),
                 KeyboardButton(_('⚙️ Language'))
             ]
-        ], resize_keyboard=True, one_time_keyboard=one_time
+        ], resize_keyboard=True
     )
     return main_kb
 
