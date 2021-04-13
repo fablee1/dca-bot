@@ -38,3 +38,10 @@ class AddNews(StatesGroup):
     EnterUrl = State()
     EnterUrl_ru = State()
     Confirm = State()
+
+
+class Announcement(StatesGroup):
+    EnterAnno = State()
+    EnterAnno_ru = State()
+    EnterImg = State()
+    Confirm = State()

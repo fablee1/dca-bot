@@ -1,6 +1,10 @@
 import os
 from pathlib import Path
 
+
+# choose dev or production mode
+BOT_MODE = os.getenv("BOT_MODE")
+
 TOKEN = os.getenv("TOKEN")
 admin_id = int(os.getenv("ADMIN_ID"))
 db_user = os.getenv("DB_USER")
@@ -22,3 +26,6 @@ WEBAPP_PORT = int(os.getenv('PORT'))
 I18N_DOMAIN = 'dcabot'
 BASE_DIR = Path(__file__).parent
 LOCALES_DIR = BASE_DIR / 'locales'
+
+if BOT_MODE == 'DEV':
+    TOKEN = os.getenv("TOKEN_DEV")

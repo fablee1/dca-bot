@@ -187,6 +187,9 @@ class DBCommands:
         quest = await Quests.query.where(Quests.date == quest_date).gino.first()
         await quest.update(solved=False).apply()
 
+    async def get_all_users(self):
+        users = await User.query.gino.all()
+        return users
 
 async def create_db():
     await db.set_bind(f'postgresql://{db_user}:{db_pass}@{host}/{database}')

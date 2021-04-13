@@ -63,6 +63,9 @@ async def main_kb():
                 KeyboardButton(_('🗞 News'))
             ],
             [
+                KeyboardButton(_('How to solve❓'))
+            ],
+            [
                 KeyboardButton(_('📱 Apps')),
                 KeyboardButton(_('💽 Scan QR'))
             ],
@@ -121,6 +124,9 @@ async def admin_kb():
         [
             InlineKeyboardButton(_('App'), callback_data='admin_app'),
             InlineKeyboardButton(_('Stats'), callback_data='admin_stats')
+        ],
+        [
+            InlineKeyboardButton(_('Announcement'), callback_data='make_anno')
         ],
         InlineKeyboardButton(_('Exit admin panel'), callback_data='back_to_main_menu')
     ]
@@ -337,3 +343,19 @@ async def stats_back():
         InlineKeyboardButton(_('Back'), callback_data='stats_back')
     )
     return stats_back_kb
+
+
+async def anno_cancel(confirm=False, img=False):
+    anno_cancel_kb = InlineKeyboardMarkup()
+    if confirm is True:
+        anno_cancel_kb.add(
+            InlineKeyboardButton(_('Confirm'), callback_data='confirm_anno')
+        )
+    if img is True:
+        anno_cancel_kb.add(
+            InlineKeyboardButton(_('No picture needed'), callback_data='anno_no_picture')
+        )
+    anno_cancel_kb.add(
+        InlineKeyboardButton(_('Cancel'), callback_data='anno_cancel')
+    )
+    return anno_cancel_kb

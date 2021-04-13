@@ -38,30 +38,30 @@ async def generate_quest(call, page, q_count=3, is_call=True):
     num_q = len(quests)
     num = (page - 1) * q_count
     q_str = _('Quest from')
-    lang = db.get_lang()
-    for x in last_quests:
+    lang = await db.get_lang()
+    for quest in last_quests:
         num += 1
         is_next_page = False
         if num == page * q_count:
             if num_q > page * q_count:
                 is_next_page = True
-        date_str = '*[{q_str} {d}\.{m}\.{y}]({url})*'.format(d=x.date.day,
-                                                             m=x.date.month,
-                                                             y=x.date.year,
-                                                             url=x.url,
+        date_str = '*[{q_str} {d}\.{m}\.{y}]({url})*'.format(d=quest.date.day,
+                                                             m=quest.date.month,
+                                                             y=quest.date.year,
+                                                             url=quest.url,
                                                              q_str=q_str)
         solved_str = _('Quest not solved\! 🕐')
-        if x.solved:
+        if quest.solved:
             solved_str = _('Quest is solved\! ✅')
         msg_q = _('{num} {date_str}'
                   '\nDifficulty: {diff}/100'
-                  '\n{sol}').format(num=await num_to_emoji(num), date_str=date_str, diff=x.diff, sol=solved_str)
+                  '\n{sol}').format(num=await num_to_emoji(num), date_str=date_str, diff=quest.diff, sol=solved_str)
         if not is_call:
             await call.answer(msg_q, parse_mode=ParseMode.MARKDOWN_V2, disable_web_page_preview=True,
-                              reply_markup=await keyboards.hint_kb(x.date, page, lang=lang, next_page=is_next_page))
+                              reply_markup=await keyboards.hint_kb(quest.date, page, lang=lang, next_page=is_next_page))
         else:
             await call.message.answer(msg_q, parse_mode=ParseMode.MARKDOWN_V2, disable_web_page_preview=True,
-                                      reply_markup=await keyboards.hint_kb(x.date, page, lang=lang,
+                                      reply_markup=await keyboards.hint_kb(quest.date, page, lang=lang,
                                                                            next_page=is_next_page))
 
 
@@ -81,18 +81,19 @@ async def generate_news(call, page, n_count=5, is_call=True):
     msg = emojize(':newspaper: *{n_str}*\n'.format(n_str=n_str))
     if page > 1:
         msg = ''
-    for x in last_news:
+    for news_x in last_news:
         num += 1
-        url = x.url
-        desc = x.desc
+        url = news_x.url
+        desc = news_x.desc
         if await db.get_lang() == 'ru':
-            if x.url_ru is not None:
-                url = x.url_ru
-            if x.desc_ru is not None:
-                desc = x.desc_ru
-        date = '{d}\.{m}\.{y}'.format(d=x.date.day, m=x.date.month, y=x.date.year)
+            if news_x.url_ru is not None:
+                url = news_x.url_ru
+            if news_x.desc_ru is not None:
+                desc = news_x.desc_ru
+        date = '{d}\.{m}\.{y}'.format(d=news_x.date.day, m=news_x.date.month, y=news_x.date.year)
         msg += '\n\n{num} {desc} \({date}\)' \
-               '\n{url}'.format(date=date, num=await num_to_emoji(num), desc=desc, url=url.replace('.', '\.').replace('-', '\-'))
+               '\n{url}'.format(date=date, num=await num_to_emoji(num), desc=desc,
+                                url=url.replace('.', '\.').replace('-', '\-'))
     if num_n > page * n_count:
         if not is_call:
             await call.answer(msg, parse_mode=ParseMode.MARKDOWN_V2, reply_markup=await keyboards.more_news(page),
@@ -142,6 +143,12 @@ async def show_hint(call: types.CallbackQuery, callback_data: dict):
         elif hint_n == '4':
             hint_text = hints.hint4_ru
     await call.answer(text=hint_text, show_alert=True)
+
+
+@dp.message_handler(text=['How to solve❓', 'Как решать❓'])
+async def cmd_how_to_solve(message: types.Message):
+    msg = _('how_to_solve')
+    await message.answer(msg, parse_mode=ParseMode.HTML, disable_web_page_preview=True)
 
 
 @dp.message_handler(text=['📱 Apps', '📱 Приложения'])
@@ -235,3 +242,4 @@ async def more_news(call: types.CallbackQuery, callback_data: dict):
     await call.answer()
     await call.message.edit_reply_markup()
     await generate_news(call, page)
+

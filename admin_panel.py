@@ -1,13 +1,14 @@
-from aiogram.types import ContentType, ParseMode
-from aiogram.utils.emoji import emojize
+from asyncio import sleep
+
+from aiogram.types import ParseMode
 
 import keyboards
 from aiogram.dispatcher import FSMContext
-from aiogram.dispatcher.filters import Text, Filter
+from aiogram.dispatcher.filters import Filter
 from aiogram import types
-from load_all import dp, _
+from load_all import dp, _, bot
 from database import DBCommands, Quests, Hints, News
-from states import AddQuest, AddHints, EditQuest, AddApp, AddNews, EditNews
+from states import AddQuest, AddHints, EditQuest, AddApp, AddNews, EditNews, Announcement
 import datetime
 
 db = DBCommands()
@@ -18,6 +19,26 @@ class IsAdmin(Filter):
 
     async def check(self, message: types.Message):
         return await db.is_admin()
+
+
+async def mailing(en_text, ru_text, img_id=None):
+    users = await db.get_all_users()
+    for user in users:
+        try:
+            if user.language == 'en':
+                if img_id is None:
+                    await bot.send_message(chat_id=user.user_id, text=en_text)
+                else:
+                    await bot.send_photo(chat_id=user.user_id, photo=img_id, caption=en_text)
+            else:
+                if img_id is None:
+                    await bot.send_message(chat_id=user.user_id, text=ru_text)
+                else:
+                    await bot.send_photo(chat_id=user.user_id, photo=img_id, caption=ru_text)
+            await sleep(0.3)
+        except Exception:
+            pass
+    return
 
 
 async def generate_admin_quests(call, page, q_count=1, gen_new=True, is_call=True, quest_d=None):
@@ -935,3 +956,93 @@ async def stats_back(call: types.CallbackQuery):
     await call.answer()
     await call.message.edit_text(msg)
     await call.message.edit_reply_markup(reply_markup=await keyboards.admin_kb())
+
+
+# ---------------------------- Announcement/Update mailing to all users -----------------------------
+@dp.callback_query_handler(IsAdmin(), text='anno_cancel', state=Announcement)
+async def anno_cancel(call: types.CallbackQuery, state: FSMContext):
+    msg = _('Admin panel.')
+    await call.answer()
+    await call.message.edit_text(msg)
+    await call.message.edit_reply_markup(reply_markup=await keyboards.admin_kb())
+    await state.reset_state()
+
+
+@dp.callback_query_handler(IsAdmin(), text='make_anno')
+async def anno(call: types.CallbackQuery, state: FSMContext):
+    msg = _('anno_enter_en')
+    await call.answer()
+    await call.message.edit_text(msg)
+    await call.message.edit_reply_markup(reply_markup=await keyboards.anno_cancel())
+    await Announcement.EnterAnno.set()
+
+
+@dp.message_handler(IsAdmin(), state=Announcement.EnterAnno)
+async def anno_enter_en(message: types.Message, state: FSMContext):
+    anno_en = message.text
+    msg = _('anno_enter_ru')
+    await message.answer(msg, reply_markup=await keyboards.anno_cancel())
+    await Announcement.EnterAnno_ru.set()
+    await state.update_data(anno_en=anno_en)
+
+
+@dp.message_handler(IsAdmin(), state=Announcement.EnterAnno_ru)
+async def anno_enter_ru(message: types.Message, state: FSMContext):
+    anno_ru = message.text
+    msg = _('anno_img')
+    await message.answer(msg, reply_markup=await keyboards.anno_cancel(img=True))
+    await Announcement.EnterImg.set()
+    await state.update_data(anno_ru=anno_ru)
+
+
+@dp.message_handler(IsAdmin(), state=Announcement.EnterImg, content_types=['photo'])
+async def anno_enter_img(message: types.Message, state: FSMContext):
+    img_id = message.photo[-1].file_id
+    data = await state.get_data()
+    anno_en = data.get('anno_en')
+    anno_ru = data.get('anno_ru')
+    msg = _('anno_confirm').format(anno_en=anno_en, anno_ru=anno_ru)
+    await message.answer(msg, reply_markup=await keyboards.anno_cancel(True))
+    await Announcement.Confirm.set()
+    await state.update_data(img_id=img_id)
+
+
+@dp.callback_query_handler(IsAdmin(), state=Announcement.EnterImg, text='anno_no_picture')
+async def anno_no_img(call: types.CallbackQuery, state: FSMContext):
+    data = await state.get_data()
+    anno_en = data.get('anno_en')
+    anno_ru = data.get('anno_ru')
+    msg = _('anno_confirm').format(anno_en=anno_en, anno_ru=anno_ru)
+    await call.answer()
+    await call.message.answer(msg, reply_markup=await keyboards.anno_cancel(True))
+    await Announcement.Confirm.set()
+    await state.update_data(img_id=None)
+
+
+
+@dp.callback_query_handler(IsAdmin(), state=Announcement.Confirm)
+async def anno_confirm(call: types.CallbackQuery, state: FSMContext):
+    data = await state.get_data()
+    img_id = data.get('img_id')
+    anno_en = data.get('anno_en')
+    anno_ru = data.get('anno_ru')
+    await state.reset_state()
+    await call.message.edit_reply_markup(reply_markup=await keyboards.admin_kb())
+
+    users = await db.get_all_users()
+    for user in users:
+        try:
+            if user.language == 'en':
+                if img_id is None:
+                    await bot.send_message(chat_id=user.user_id, text=anno_en)
+                else:
+                    await bot.send_photo(chat_id=user.user_id, photo=img_id, caption=anno_en)
+            else:
+                if img_id is None:
+                    await bot.send_message(chat_id=user.user_id, text=anno_ru)
+                else:
+                    await bot.send_photo(chat_id=user.user_id, photo=img_id, caption=anno_ru)
+            await sleep(0.3)
+        except Exception:
+            pass
+    await call.message.answer(_('Mailing finished.'))

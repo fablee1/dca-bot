@@ -17,6 +17,10 @@ async def on_startup(dp):
     await bot.set_webhook(WEBHOOK_URL, drop_pending_updates=True)
 
 
+async def on_startup_dev(dp):
+    await create_db()
+
+
 def main():
     start_webhook(
         dispatcher=dp,
@@ -33,4 +37,4 @@ if __name__ == "__main__":
     from admin_panel import dp
 
     # Запуск бота
-    executor.start_polling(dp, skip_updates=True)
+    executor.start_polling(dp, on_startup=on_startup_dev, skip_updates=True)
